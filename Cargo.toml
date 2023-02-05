@@ -1,0 +1,30 @@
+[package]
+name = "gcp-aws-auth"
+description = "Authenticate to a Google Cloud service account using an AWS role"
+version = "0.1.1"
+edition = "2021"
+license = "MIT/Apache-2.0"
+repository = "https://github.com/jbg/gcp-aws-auth"
+authors = ["Jasper Hugo <jasper@jasperhugo.com>"]
+
+[dependencies]
+anyhow = { version = "1", default-features = false, features = ["std"] }
+aws-config = { version = "0.54", default-features = false, features = ["rustls", "rt-tokio"] }
+aws-credential-types = { version = "0.54", default-features = false }
+aws-sdk-sts = { version = "0.24", default-features = false, features = ["rustls", "rt-tokio"] }
+aws-sig-auth = { version = "0.54", default-features = false }
+aws-smithy-http = { version = "0.54", default-features = false }
+aws-types = { version = "0.54", default-features = false }
+clap = { version = "4", default-features = false, features = ["std", "derive"] }
+http = { version = "0.2", default-features = false }
+hyper = { version = "0.14", default-features = false, features = ["http1", "http2", "client", "runtime"] }
+hyper-rustls = { version = "0.23", default-features = false, features = ["native-tokio", "tls12", "http1", "http2", "logging"] }
+percent-encoding = { version = "2", default-features = false }
+serde = { version = "1", default-features = false, features = ["derive"] }
+serde_json = { version = "1", default-features = false, features = ["std"] }
+tokio = { version = "1", default-features = false, features = ["macros", "rt-multi-thread"] }
+
+[profile.release]
+codegen-units = 1
+opt-level = 3
+lto = true
